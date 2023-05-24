@@ -1,2 +1,2 @@
-remote_host
-remote_host1
+remote-host ansible_connection=ssh ansible_user=remote_user
+remote-host1 ansible_connection=ssh ansible_user=remote_user
