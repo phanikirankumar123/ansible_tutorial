@@ -2,18 +2,31 @@
 
 - hosts: all
   become: true
-  tasks:
+  pre_tasks:
 
-  - name: update repository index
-    yum:
+  - name: install updates
+    tags: always
+    package:
       update_cache: yes
 
-  - name: install httpd package
-    yum:
-      name: httpd
+- hosts: web_servers
+  become: true
+  tasks:
+
+  - name: install httpd and php packages
+    tags: httpd,php
+    package:
+      name: 
+        - "{{ httpd_package }}"
+        - "{{ php_package }}"
       state: latest
 
-  - name: install php support for httpd
+- hosts: db_servers
+  become: true
+  tasks:
+
+  - name: install mariadb
+    tags: db
     yum:
-      name: php
+      name: mariadb-server
       state: latest

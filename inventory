@@ -1,2 +1,5 @@
-remote-host ansible_connection=ssh ansible_become_method=su ansible_user=remote_user
-remote-host1 ansible_connection=ssh ansible_become_method=su ansible_user=remote_user
+[web_servers]
+remote-host httpd_package=httpd php_package=php ansible_connection=ssh ansible_become_method=su ansible_user=remote_user
+
+[db_servers]
+remote-host1 httpd_package=httpd php_package=php ansible_connection=ssh ansible_become_method=su ansible_user=remote_user
